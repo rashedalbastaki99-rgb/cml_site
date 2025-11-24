@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CML Premium Leather Strap – Product</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement-bar">
+    UAE DELIVERY IN 1–3 WORKING DAYS · CASH ON DELIVERY · STRIPE, APPLE PAY & GOOGLE PAY
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <img src="images/logo.png" alt="CML logo" />
+        <span class="logo-text">CARRY · MOVE · LIFT</span>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link">Collection</a>
+        <a href="product.html" class="nav-link active">Product</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container product-layout">
+        <div class="product-image">
+          <div class="product-image-inner">
+            <img
+              id="mainProductImage"
+              class="product-main-image"
+              src="images/sandy-beige-1.jpg"
+              alt="CML Premium Leather Strap Sandy Beige"
+            />
+            <div class="product-thumbs">
+              <img
+                id="thumb1"
+                class="product-thumb active"
+                src="images/sandy-beige-1.jpg"
+                alt="CML Premium Leather Strap Sandy Beige"
+              />
+              <img
+                id="thumb2"
+                class="product-thumb"
+                src="images/sandy-beige-2.jpg"
+                alt="CML Premium Leather Strap Sandy Beige in gym"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="product-details">
+          <h1>CML PREMIUM LEATHER LIFTING STRAPS</h1>
+          <p class="product-subtitle">
+            Premium suede leather straps built for serious lifters. Designed for deadlifts, rows, and heavy pulls,
+            with CML camel branding and a secure feel around the bar.
+          </p>
+
+          <p class="product-price-lg">
+            AED 250
+            <span class="product-price-small">+ AED 20 shipping within UAE</span>
+          </p>
+          <p class="product-info-small">
+            • Genuine suede leather &nbsp; • Reinforced stitching &nbsp; • One-size fits most wrists
+          </p>
+          <p class="product-info-small">
+            Colors: Sandy Beige &amp; Dark Brown — matched to the CML brand palette.
+          </p>
+
+          <form class="product-form">
+            <div class="form-group">
+              <label for="color">Color</label>
+              <select id="color" required>
+                <option value="">Select color</option>
+                <option value="beige">Premium Leather Strap Sandy Beige</option>
+                <option value="dark">Premium Leather Strap Dark Brown</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" min="1" value="1" required />
+            </div>
+
+            <div class="payment-section">
+              <h2>Payment Options</h2>
+              <p class="product-info-small">
+                Pay securely with card, Apple Pay, or Google Pay through Stripe.<br />
+                Apple Pay and Google Pay appear automatically on supported devices and browsers.
+              </p>
+
+              <button type="button" class="btn btn-primary btn-full" id="stripeCheckoutBtn">
+                Pay with Card / Apple Pay / Google Pay
+              </button>
+
+              <div class="cod-box">
+                <h3>Cash on Delivery</h3>
+                <p class="product-info-small">
+                  Prefer to pay in cash? Fill in your details and we’ll confirm your order via phone or WhatsApp.
+                </p>
+
+                <div class="form-group-inline">
+                  <div class="form-group">
+                    <label for="cod-name">Full Name</label>
+                    <input type="text" id="cod-name" placeholder="Your name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="cod-phone">Phone Number</label>
+                    <input type="tel" id="cod-phone" placeholder="+971..." />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="cod-address">Delivery Address</label>
+                  <textarea id="cod-address" rows="3" placeholder="Building, street, city"></textarea>
+                </div>
+
+                <button type="button" class="btn btn-ghost btn-full" id="codSubmitBtn">
+                  Place Cash on Delivery Order
+                </button>
+
+                <p class="cod-note" id="codMessage"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="section-title">Details</h2>
+        <div class="grid-2">
+          <p class="section-text">
+            CML straps are crafted from thick, durable suede leather that breaks in over time without losing support.
+            The wide contact area helps you lock onto the bar so you can focus on the lift instead of your grip.
+          </p>
+          <p class="section-text">
+            Shipping within UAE is AED 20 per order. Orders usually arrive in 1–3 working days. After placing an order,
+            you’ll receive a confirmation message with delivery details.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> CML. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const FORMSPREE_URL = "https://formspree.io/f/mdkjjzvb";
+
+    const imageSets = {
+      beige: ["images/sandy-1.jpg","images/sandy-2.jpg","images/sandy-3.jpg"],
+      dark: ["images/dark-1.jpg","images/dark-2.jpg","images/dark-3.jpg"],
+    };
+
+    const stripeLinks = {
+      beige: "https://buy.stripe.com/28E7sDfDa2ps142f6G4ow05",
+      dark: "https://buy.stripe.com/aFa14f2Qoggi8wu9Mm4ow04"
+    };
+
+    const mainImg = document.getElementById("mainProductImage");
+    const thumb1 = document.getElementById("thumb1");
+    const thumb2 = document.getElementById("thumb2");
+    
+const colorSelect = document.getElementById("color");
+// Preselect color from URL if present, e.g. product.html?color=beige or ?color=dark
+const params = new URLSearchParams(window.location.search);
+const initialColor = params.get("color");
+if (initialColor === "beige" || initialColor === "dark") {
+  colorSelect.value = initialColor;
+  setImages(initialColor);
+}
+
+    function setImages(colorKey) {
+      const imgs = imageSets[colorKey];
+      if (!imgs) return;
+      mainImg.src = imgs[0];
+      thumb1.src = imgs[0];
+      thumb2.src = imgs[1];
+      [thumb1, thumb2].forEach(t => t.classList.remove("active"));
+      thumb1.classList.add("active");
+    }
+
+    colorSelect.addEventListener("change", (e) => {
+      const value = e.target.value;
+      if (value === "beige" || value === "dark") {
+        setImages(value);
+      }
+    });
+
+    [thumb1, thumb2].forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        mainImg.src = thumb.src;
+        [thumb1, thumb2].forEach(t => t.classList.remove("active"));
+        thumb.classList.add("active");
+      });
+    });
+
+    document.getElementById("stripeCheckoutBtn").addEventListener("click", () => {
+      const chosenColor = document.getElementById("color").value;
+
+      if (!chosenColor) {
+        alert("Please choose a color first.");
+        return;
+      }
+
+      const url = stripeLinks[chosenColor];
+      if (!url) {
+        alert("Payment link not available for this color.");
+        return;
+      }
+
+      window.location.href = url;
+    });
+
+    document.getElementById("codSubmitBtn").addEventListener("click", async () => {
+      const name = document.getElementById("cod-name").value.trim();
+      const phone = document.getElementById("cod-phone").value.trim();
+      const address = document.getElementById("cod-address").value.trim();
+      const color = document.getElementById("color").value;
+      const quantity = document.getElementById("quantity").value;
+
+      const messageElement = document.getElementById("codMessage");
+
+      if (!name || !phone || !address || !color || !quantity) {
+        messageElement.textContent =
+          "Please fill in all fields to place a cash on delivery order.";
+        messageElement.classList.add("error");
+        return;
+      }
+
+      const colorLabel = color === "beige" ? "Sandy Beige" : "Dark Brown";
+
+      const payload = {
+        name,
+        phone,
+        address,
+        color: colorLabel,
+        quantity,
+        _subject: "New COD order - CML Straps",
+        message: `New COD order:
+
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+Color: ${colorLabel}
+Quantity: ${quantity}`
+      };
+
+      try {
+        const res = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          messageElement.classList.remove("error");
+          messageElement.textContent =
+            "Thank you! Your cash on delivery order has been submitted. We will contact you shortly to confirm.";
+          document.getElementById("cod-name").value = "";
+          document.getElementById("cod-phone").value = "";
+          document.getElementById("cod-address").value = "";
+        } else {
+          messageElement.textContent =
+            "Something went wrong sending your order. Please try again or contact us on WhatsApp.";
+          messageElement.classList.add("error");
+        }
+      } catch (err) {
+        messageElement.textContent =
+          "Network error. Please try again or contact us on WhatsApp.";
+        messageElement.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>
