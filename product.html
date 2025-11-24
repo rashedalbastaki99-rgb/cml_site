@@ -81,10 +81,10 @@
               </select>
             </div>
 
-            <!-- <div class="form-group">
+            <div class="form-group">
               <label for="quantity">Quantity</label>
               <input type="number" id="quantity" min="1" value="1" required />
-            </div> -->
+            </div>
 
             <div class="payment-section">
               <h2>Payment Options</h2>
@@ -106,17 +106,17 @@
                 <div class="form-group-inline">
                   <div class="form-group">
                     <label for="cod-name">Full Name</label>
-                    <input type="text" id="cod-name" placeholder="Your name" />
+                      <input type="text" id="cod-name" placeholder="Your name" required />
                   </div>
                   <div class="form-group">
                     <label for="cod-phone">Phone Number</label>
-                    <input type="tel" id="cod-phone" placeholder="+971..." />
+                      <input type="tel" id="cod-phone" placeholder="+971..." required pattern="^\+?971[0-9]{8,9}$" title="Please enter a valid UAE phone number starting with +971" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="cod-address">Delivery Address</label>
-                  <textarea id="cod-address" rows="3" placeholder="Building, street, city"></textarea>
+                    <textarea id="cod-address" rows="3" placeholder="Building, street, city" required></textarea>
                 </div>
 
                 <button type="button" class="btn btn-ghost btn-full" id="codSubmitBtn">
